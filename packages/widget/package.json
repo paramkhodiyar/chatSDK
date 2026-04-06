@@ -1,0 +1,30 @@
+{
+  "name": "@chat-sdk/widget",
+  "version": "1.0.0",
+  "files": ["dist"],
+  "description": "React widget for AI Chat SDK",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "dependencies": {
+    "lucide-react": "^0.368.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.2.8",
+    "vite-plugin-css-injected-by-js": "^3.4.0",
+    "vite-plugin-dts": "^3.8.1"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

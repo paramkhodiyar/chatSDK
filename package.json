@@ -1,0 +1,16 @@
+{
+  "name": "chat-sdk-monorepo",
+  "version": "1.0.0",
+  "description": "Embeddable AI Chat Support System",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:core": "npm run build -w packages/core",
+    "build:widget": "npm run build -w packages/widget",
+    "dev:backend": "npm run dev -w apps/example-backend",
+    "dev:frontend": "npm run dev -w apps/example-frontend"
+  }
+}

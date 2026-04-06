@@ -1,0 +1,23 @@
+{
+  "name": "@chat-sdk/core",
+  "version": "1.0.0",
+  "files": ["dist"],
+  "description": "Backend orchestrator for AI Chat SDK",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "groq-sdk": "^0.3.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  }
+}
