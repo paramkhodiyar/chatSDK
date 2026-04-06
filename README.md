@@ -8,8 +8,8 @@
 
 The system is split into two lightweight, extensible packages:
 
-1.  **`@chat-sdk/core`**: The backend orchestrator. Handles LLM streaming (Groq), Memory management, and local RAG (Simple in-memory vector retrieval).
-2.  **`@chat-sdk/widget`**: The frontend SDK. A React-based, visually customizable chat window that connects to your backend orchestrator via Server-Sent Events (SSE).
+1.  **`@paramkhodiyar/chat-core`**: The backend orchestrator. Handles LLM streaming (Groq), Memory management, and local RAG.
+2.  **`@paramkhodiyar/chat-widget`**: The frontend SDK. A React-based, visually customizable chat window.
 
 ---
 
@@ -17,10 +17,10 @@ The system is split into two lightweight, extensible packages:
 
 ```bash
 # To build your own backend
-npm install @chat-sdk/core
+npm install @paramkhodiyar/chat-core
 
 # To add the widget to your React app
-npm install @chat-sdk/widget
+npm install @paramkhodiyar/chat-widget
 ```
 
 ---
@@ -33,7 +33,7 @@ Create an Express route to handle chat streaming using the core orchestrator.
 
 ```typescript
 import express from 'express';
-import { ChatOrchestrator } from '@chat-sdk/core';
+import { ChatOrchestrator } from '@paramkhodiyar/chat-core';
 
 const app = express();
 const orchestrator = new ChatOrchestrator({
@@ -68,7 +68,7 @@ app.post('/api/chat', async (req, res) => {
 Import the widget into your React application and provide your configuration.
 
 ```tsx
-import { ChatWidget, WidgetConfig } from '@chat-sdk/widget';
+import { ChatWidget, WidgetConfig } from '@paramkhodiyar/chat-widget';
 
 const config: WidgetConfig = {
   theme: {
