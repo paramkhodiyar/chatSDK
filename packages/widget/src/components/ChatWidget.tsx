@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { WidgetConfig } from '../types';
 import { useChat } from '../hooks/useChat';
 import { MessageCircle, X, Send } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import '../styles/main.css';
 
 export interface ChatWidgetProps {
@@ -47,7 +48,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ config }) => {
             {messages.map((m) => (
               <div key={m.id} className={`chat-sdk-message ${m.role === 'user' ? 'user' : 'assistant'}`}>
                 <div className="chat-sdk-bubble">
-                  {m.content || <span className="chat-sdk-typing">...</span>}
+                  {m.content ? (
+                    <div className="chat-sdk-markdown">
+                      <ReactMarkdown>{m.content}</ReactMarkdown>
+                    </div>
+                  ) : (
+                    <span className="chat-sdk-typing">...</span>
+                  )}
                 </div>
               </div>
             ))}

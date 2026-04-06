@@ -1,6 +1,6 @@
 {
   "name": "@paramkhodiyar/chat-widget",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "files": [
     "dist"
   ],
@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@paramkhodiyar/chat-core": "*",
-    "lucide-react": "^0.368.0"
+    "lucide-react": "^0.368.0",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
