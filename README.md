@@ -1,6 +1,6 @@
 # ChatSDK 🚀
 
-**ChatSDK** is a modular, high-performance, and developer-first AI chat system that allows you to embed a fully functional, RAG-capable support widget into any web application in minutes.
+**ChatSDK** is a modular, high-performance, and developer-first AI chat system. It allows you to embed a fully functional, RAG-capable support widget into any web application in minutes.
 
 ---
 
@@ -13,33 +13,19 @@ The system is split into two lightweight, extensible packages:
 
 ---
 
-## 📦 Installation
-
-```bash
-# To build your own backend
-npm install @paramkhodiyar/chat-core
-
-# To add the widget to your React app
-npm install @paramkhodiyar/chat-widget
-```
-
----
-
 ## 🚀 Quick Start
 
 ### 1. Set Up the Backend Orchestrator
 
-Create an Express route to handle chat streaming using the core orchestrator.
+Create a Next.js or Express route:
 
 ```typescript
-import express from 'express';
 import { ChatOrchestrator } from '@paramkhodiyar/chat-core';
 
-const app = express();
 const orchestrator = new ChatOrchestrator({
   llm: {
     provider: 'groq',
-    apiKey: process.env.GROQ_API_KEY,
+    apiKey: process.env.GROQ_API_KEY, // Use server-side variables
     model: 'llama-3.3-70b-versatile',
   },
   behavior: {
@@ -48,52 +34,35 @@ const orchestrator = new ChatOrchestrator({
   rag: { enabled: true, provider: 'memory' }
 });
 
-// Ingest documents for RAG (Markdown, Text, PDFs)
-orchestrator.getRagManager().ingestDocument("Support hours are 9-5 EST.");
-
-app.post('/api/chat', async (req, res) => {
-  const { message } = req.body;
-  res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-
-  const stream = orchestrator.streamChat(message);
-  for await (const chunk of stream) {
-    res.write(chunk);
-  }
-  res.end();
-});
+// Stream back to client
+const stream = orchestrator.streamChat(message);
 ```
 
 ### 2. Embed the Chat Widget
-
-Import the widget into your React application and provide your configuration.
 
 ```tsx
 import { ChatWidget, WidgetConfig } from '@paramkhodiyar/chat-widget';
 
 const config: WidgetConfig = {
   theme: {
-    primaryColor: '#4f46e5',
+    primaryColor: '#10b981',
     botName: 'AI Support',
     placement: 'bottom-right'
   },
   api: {
-    endpoint: 'http://localhost:3001/api/chat',
+    endpoint: '/api/chat',
   },
   initialMessage: 'How can I help you today?',
 };
 
 function App() {
-  return (
-    <div className="app">
-      <ChatWidget config={config} />
-    </div>
-  );
+  return <ChatWidget config={config} />;
 }
 ```
 
 ---
 
-## 🎨 Customization
+## 🎨 Customization & Branding
 
 ChatSDK is designed to be visually transparent. It uses dynamic CSS variable injection to ensure it never leaks or clashes with your main application's styles.
 
@@ -104,23 +73,30 @@ ChatSDK is designed to be visually transparent. It uses dynamic CSS variable inj
 | `theme.primaryColor` | `string` | Hex or CSS color for branding. |
 | `theme.botName` | `string` | Display name in the header. |
 | `theme.placement` | `string` | `bottom-right` or `bottom-left`. |
-| `api.endpoint` | `string` | Your backend SSE endpoint. |
-| `initialMessage` | `string` | Optional greeting message. |
+| `theme.iconUrl` | `string` | URL for a custom chat button icon. |
+| `api.endpoint` | `string` | Your backend streaming endpoint. |
+| `api.headers` | `object` | Optional custom headers (e.g. `x-api-key`). |
 
 ---
 
-## 🛠️ Monorepo Development
+## 🛡️ Security & API Keys
 
-If you are contributing to ChatSDK or running the source locally:
+- **Always** store your `GROQ_API_KEY` on the **Server Side** (e.g., in `.env`).
+- **Never** expose your main LLM API key to the browser.
+- Use `api.headers` in the `ChatWidget` config to pass an application-specific `x-api-key` header for authentication if your backend is public.
 
-1.  **Install & Link**: `npm install`
-2.  **Build Core**: `npm run build:core`
-3.  **Build Widget**: `npm run build:widget`
-4.  **Run Demos**: 
-    - Frontend: `npm run dev:frontend`
-    - Backend: `npm run dev:backend`
+---
+
+## 📝 What can be done better?
+
+This SDK is a robust foundation, but here are some areas for growth:
+
+- **🔄 Persistence**: Currently, RAG data and chat memory are stored in local RAM. Integrating **Pinecone** or **Redis** for persistent memory would benefit high-traffic applications.
+- **🛡️ Enhanced Sanitization**: Adding a pre-processor to the `ChatOrchestrator` to catch and block prompt injections *before* they reach the LLM would provide an extra layer of security.
+- **📂 File/Image Support**: Expanding the `ChatWidget` to handle attachments would allow for richer support interactions.
+- **💾 History Caching**: Syncing the chat state with `localStorage` would prevent losing conversations on page refresh.
 
 ---
 
 ## 📜 License
-[MIT](LICENSE) © 2026 Your Name / Organization
+MIT © 2026 @paramkhodiyar
