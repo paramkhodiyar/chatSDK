@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChatWidget, WidgetConfig } from '@chat-sdk/widget';
+import { ChatWidget, WidgetConfig } from '@paramkhodiyar/chat-widget';
 
 const App: React.FC = () => {
   const config: WidgetConfig = {

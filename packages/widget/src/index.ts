@@ -1,3 +1,2 @@
-export * from './components/ChatWidget';
-export * from './types';
-export * from './hooks/useChat';
+export { ChatWidget } from './components/ChatWidget';
+export type { WidgetConfig } from './types.js';

@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { ChatOrchestrator, OrchestratorConfig } from '@chat-sdk/core';
+import { ChatOrchestrator, OrchestratorConfig } from '@paramkhodiyar/chat-core';
 
 dotenv.config();
 
