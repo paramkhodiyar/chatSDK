@@ -2,7 +2,19 @@
 
 **ChatSDK** is a modular, high-performance, and developer-first AI chat system. It allows you to embed a fully functional, RAG-capable support widget into any web application in minutes.
 
+## Features
+
+- **Real-time Streaming**: Instant responses using Groq's streaming API.
+- **RAG Ready**: Built-in support for Retrieval-Augmented Generation.
+- **Customizable UI**: Theme your widget with a single line of code.
+- **Memory Management**: Automatic conversation history tracking.
+- **Lightweight**: Minimal bundle size and zero external dependencies (except React).
+
 ---
+
+**NPMjs link**
+- core: https://www.npmjs.com/package/@paramkhodiyar/chat-core
+- widget: https://www.npmjs.com/package/@paramkhodiyar/chat-widget
 
 ## 🏗️ Architecture
 
