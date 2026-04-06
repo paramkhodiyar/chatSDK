@@ -97,6 +97,3 @@ This SDK is a robust foundation, but here are some areas for growth:
 - **💾 History Caching**: Syncing the chat state with `localStorage` would prevent losing conversations on page refresh.
 
 ---
-
-## 📜 License
-MIT © 2026 @paramkhodiyar
